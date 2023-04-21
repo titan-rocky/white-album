@@ -8,7 +8,7 @@ import i4 from "/Images/mno.png";
 import i5 from "/Images/pqr.png";
 import i6 from "/Images/stu.png";
 
-function Perdaylist(props: { imgs: Array; date: string }) {
+function Perdaylist(props: { imgs: Array<any>; date: string }) {
   return (
     <div className="p-10 m-5">
       <span className="text-dbl m-2 text-l">{props.date}</span>
@@ -18,6 +18,7 @@ function Perdaylist(props: { imgs: Array; date: string }) {
             <Image
               src={src}
               alt={`Image ${index + 1}`}
+              key={index}
               className="m-1 w-[15em] h-[10em] object-cover border-black rounded-xl border-4 transition-all delay-0
                 hover:w-[21em] hover:h-[14em] hover:transition-all hover:ease-in-out hover:delay-[800ms]"
             />
