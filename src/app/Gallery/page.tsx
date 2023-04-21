@@ -1,12 +1,12 @@
 import { WhHeader, Navspan } from "../Components/comps";
 import Image from "next/image";
 
-import i1 from "/Images/abc.png";
-import i2 from "/Images/def.png";
-import i3 from "/Images/jkl.png";
-import i4 from "/Images/mno.png";
-import i5 from "/Images/pqr.png";
-import i6 from "/Images/stu.png";
+import i1 from "/images/abc.png";
+import i2 from "/images/def.png";
+import i3 from "/images/jkl.png";
+import i4 from "/images/mno.png";
+import i5 from "/images/pqr.png";
+import i6 from "/images/stu.png";
 
 function Perdaylist(props: { imgs: Array<any>; date: string }) {
   return (
