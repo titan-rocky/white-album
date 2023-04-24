@@ -1,4 +1,5 @@
 import { WhHeader, Navspan } from "../Components/comps";
+import { Needbox } from "./clicomponents";
 
 export default function Prefs() {
   return (
@@ -10,7 +11,9 @@ export default function Prefs() {
         <Navspan link="Gallery/" value="Gallery" />
         <Navspan link="Slideshow/" value="Slideshow" />
       </nav>
-      <main></main>
+      <main className="bg-green">
+        <Needbox />
+      </main>
     </body>
   );
 }

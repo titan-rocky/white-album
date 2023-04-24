@@ -24,7 +24,7 @@ function Hellobut() {
 
 export default function Home() {
   return (
-    <body className="flex flex-col items-center justify-between items-stretch justify-center h-screen">
+    <body className="h-screen">
       <WhHeader />
 
       <nav className="bg-black p-2 flex justify-evenly">
@@ -34,8 +34,8 @@ export default function Home() {
         <Navspan link="Preferences/" value="Preferences" />
       </nav>
 
-      <main className="bg-gray flex flex-col flex items-center justify-between p-10 pt-6 ">
-        <p className="bg-white border-2 border-black border-4 p-10 rounded text-center w-full">
+      <main className="bg-gray p-10 pt-6 flex flex-col items-center justify-between ">
+        <p className="bg-white border-black border-4 p-10 rounded text-center w-full">
           This process is to create a display gallery for your{" "}
           <span className="text-red text-[1.1em]">stored images</span>
           &nbsp;in backup drives and cloud storages <br /> to access modify and
@@ -45,7 +45,7 @@ export default function Home() {
           <div className="bg-white border-4 rounded-lg p-6 flex justify-center items-center basis-1/3">
             <Image src={fu} alt="pixel-portrait" />
           </div>
-          <div className="bg-white p-6 bd-black border-4 m-4  rounded-lg basis-2/3">
+          <div className="bg-white p-6 bd-black border-4 ml-4 rounded-lg basis-2/3">
             <p className="text-gray drop-shadow-2xl">
               A gallery is a mom&apos;s curiosity, which collects memories of
               the past and present , with our loved ones

@@ -4,6 +4,27 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code&family=Press+Start+2P&display=swap");
 
+@font-face {
+  font-family: "retrogam";
+  src: url("./fonts/retrogam.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "upheavel";
+  src: url("./fonts/upheavel.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "alstoria";
+  src: url("./fonts/alstoria.ttf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+/*
 :root {
   --white: #fefffe;
   --lgray: #bebfbe;
@@ -21,15 +42,22 @@
     --black: #000000;
   }
 }
+*/
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Press Start 2P";
+  font-family: "retrogam";
+  font-size: 18px;
 }
 
-body {
-  background-color: var(--white);
-  color: var(--dgray);
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.awiggle {
+  background-image: url("./resources/ass-wiggle.gif");
+  background-size: cover;
+  background-position: center;
 }
