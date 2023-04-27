@@ -11,9 +11,9 @@ const importAll = (r: any) => {
 export function ReadPath(imagesDirectory: string) {
   return importAll(
     require.context(
-      "C:/Users/rocka/pictures/screenshots",
+      "C:/Users/rocka/Pictures/Emotes/memepack",
       false,
-      /\.(png|jpe?g|svg)$/
+      /\.(png|jpe?g|svg|gif)$/
     )
   );
 }

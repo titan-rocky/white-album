@@ -61,3 +61,19 @@ body::-webkit-scrollbar {
   background-size: cover;
   background-position: center;
 }
+
+.darksoul {
+  background-image: url("./resources/bgo.png");
+  background-blend-mode: overlay;
+  background-size: cove;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.wafall {
+  background-image: url("./resources/bg2.png");
+  background-blend-mode: overlay;
+  background-size: cove;
+  background-position: center;
+  background-attachment: fixed;
+}

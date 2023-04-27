@@ -2,36 +2,17 @@ import { WhHeader, Navspan } from "../Components/comps";
 import Image from "next/image";
 import "../globals.css";
 import { ReadPath } from "./functions";
-//import { Imagecomp } from "./clicomponents";
+import { Imagecomp, Imagelist } from "./clicomponents";
+import "process";
+import { v2 as Cloudinary } from "cloudinary";
 
-function Imagecomp(props) {
-  return (
-    <div
-      key={props.index}
-      className="flex flex-col items-center bg-lgray border-2 border-black drop-shadow-sm rounded-md m-1 p-3 relative"
-    >
-      <Image
-        src={props.src.default}
-        alt={`Image ${props.index + 1}`}
-        key={props.index}
-        className="m-1 w-[6.4em] h-[3.6em] border-black border-2 bg-white rounded-lg object-cover 
-                            transition-all delay-0 peer-checked/select:w-[4.8em] peer-checked/select:h-[2.7em] 
-                            hover:w-[16em] hover:h-[9em] hover:transition-all hover:ease-in-out hover:delay-[600ms] hover:duration-[400ms]"
-        loading="lazy"
-        quality="20"
-      />
-      <div className="truncate text-black ml-2 w-[80%] text-xs">
-        {props.path[0]}
-      </div>
-      <input
-        id="select"
-        type="checkbox"
-        className="absolute left-1 top-1 w-lg enabled:bg-dbl"
-        name="select"
-      />
-    </div>
-  );
-}
+// Configuration
+Cloudinary.config({
+  cloud_name: "dhwwvwpxq",
+  api_key: "392948923474237",
+  api_secret: "47fnHkc6Vknr_I-jI0Oi1miMnxM",
+  secure: true,
+});
 
 function Butt(props: { name: string }) {
   return (
@@ -54,6 +35,7 @@ function Pathtextbox() {
   );
 }
 
+/*
 function Perdaylist(props: { date: string }) {
   const images = ReadPath("C:/Users/rocka/Pictures/wallpapers");
   return (
@@ -71,10 +53,12 @@ function Perdaylist(props: { date: string }) {
     </div>
   );
 }
+*/
 
-export default function Gallery() {
+async function Gallery(props) {
+  console.log(props);
   return (
-    <body className="bg-gray">
+    <body className="bg-gray wafall">
       <WhHeader />
       <nav className="bg-black p-2 flex justify-evenly">
         <Navspan link="#" value="Gallery" home={true} />
@@ -82,29 +66,11 @@ export default function Gallery() {
         <Navspan link="Slideshow/" value="Slideshow" />
         <Navspan link="Preferences/" value="Preferences" />
       </nav>
-      <section className="border-4 border-black bg-white rounded-xl flex justify-between items-center text-xl m-5 px-10">
-        <div className="flex flex-row items-center">
-          <h1>Path : </h1>
-          <Pathtextbox />
-          <Butt name="submit" />
-        </div>
-        <div className="flex items-center">
-          <span className="text-lg text-black">Images per page: </span>
-          <select className="m-4 text-sm text-white bg-bl font-start2p bd-gray py-2 px-3 shadow-md shadow-black border-2 border-black">
-            <option disabled className="m-3 mt-5 bg-white p-3 text-dgray">
-              all
-            </option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">25</option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">50</option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">75</option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">100</option>
-          </select>
-        </div>
-      </section>
-
-      <main className="border-4 border-black rounded-xl m-5 bg-white flex flex-col flex-wrap items-center">
-        <Perdaylist date="22-04-23" />
+      <main className="flex flex-col">
+        <Imagelist images={images.resources} />
       </main>
     </body>
   );
 }
+
+export default Gallery;
