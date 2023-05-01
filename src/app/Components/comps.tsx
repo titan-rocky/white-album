@@ -1,6 +1,7 @@
 import Image from "next/image";
 import wa from "../resources/wa.png";
 import usans from "../resources/whichbook.gif";
+import Link from "next/link";
 
 export function Butt(props: { name: string }) {
   return (
@@ -26,19 +27,30 @@ export function WhHeader() {
   );
 }
 
-export function Navspan(props: { link: string; value: string; home: boolean }) {
+export function Navspan(props: {
+  link: string;
+  value: string;
+  home: boolean;
+  disabled: boolean;
+}) {
+  if (props.home) {
+    return <span className="text-bl text-l">{props.value}</span>;
+  } else if (props.disabled) {
+    return <span className="text-lred text-l">{props.value}</span>;
+  }
   return (
-    <a
+    <Link
       href={props.link}
       className={`text-${(props.home && "bl") || "white"} 
         or text-l hover:text-bl
         `}
     >
       <span className="">{props.value}</span>
-    </a>
+    </Link>
   );
 }
 
 Navspan.defaultProps = {
   home: false,
+  disabled: false,
 };

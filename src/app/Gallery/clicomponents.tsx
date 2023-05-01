@@ -1,7 +1,13 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Router from "next/router";
+import { Suspense } from "react";
+import { v2 as Cloudinary } from "cloudinary";
+import { State } from "zustand";
 
 type cloudimage = {
   asset_id: string;
@@ -26,13 +32,29 @@ type cloudimage = {
   etag: string;
   created_by: any;
   uploaded_by: any;
+  isToggle: boolean;
+  isMatched: boolean;
 };
 
-export function Imagecomp(props: { src: any; index: number; onCheck: any }) {
-  const [checked, setCheck] = useState(0);
+function Loading() {
+  return <div>Loading ...</div>;
+}
+
+export function Imagecomp(props: {
+  src: any;
+  index: number;
+  onCheck: any;
+  setToggle: Function;
+}) {
+  const [checked, setCheck] = useState(props.src.isToggle);
+  useEffect(() => {
+    setCheck(props.src.isToggle);
+  });
+  if (props.src.isMatched == false) {
+    return <></>;
+  }
   return (
     <div
-      key={props.index}
       className={`flex flex-col items-center bg-${
         checked ? "white" : "lgray"
       } border-2 border-black drop-shadow-sm rounded-md m-1 p-3 relative`}
@@ -40,88 +62,44 @@ export function Imagecomp(props: { src: any; index: number; onCheck: any }) {
         console.log("Hello");
       }}
     >
-      <Image
-        src={props.src.url}
-        alt={`Image ${props.src.filename}`}
-        key={props.index}
-        width="160"
-        height="90"
-        quality="30"
-        className="m-1 w-[6.4em] h-[3.6em] border-black border-2 bg-white rounded-lg object-cover 
-                            transition-all delay-0 peer-checked/select:w-[4.8em] peer-checked/select:h-[2.7em] 
-                            hover:w-[16em] hover:h-[9em] hover:transition-all hover:ease-in-out hover:delay-[600ms] hover:duration-[400ms]"
-        loading="eager"
-      />
-      <div
-        className="truncate text-black ml-2 w-[80%] flex justify-center"
-        key={props.index}
-      >
-        <a
+      <div className="m-1 overflow-hidden border-black border-2  rounded-lg">
+        <Image
+          src={props.src.url}
+          alt={`Image ${props.src.filename}`}
+          width={400}
+          height={225}
+          quality="60"
+          className="w-[12em] h-[6.75em] bg-white object-cover
+                            transition-all delay-0
+                            hover:scale-150 over:transition-all hover:ease-in-out hover:duration-[1000ms]"
+          loading="eager"
+        />
+      </div>
+      <div className="truncate text-black ml-2 w-[80%]">
+        <Link
           className="text-xs"
-          href={props.src.url}
-          download={props.src.url}
-          target="_blank"
+          href={{ pathname: "/Slideshow", query: props.src }}
         >
           {props.src.filename + "." + props.src.format}
-        </a>
+        </Link>
       </div>
       <input
         id={"select" + props.index.toString()}
         type="checkbox"
-        key={props.index}
         className="absolute left-1 top-1 w-lg enabled:bg-dbl"
         name="select"
+        defaultChecked={checked}
         onChange={() => {
-          setCheck(checked ? 0 : 1);
-          props.onCheck(checked);
-          console.log(checked);
+          props.setToggle((s: any) => {
+            s.map((i: any) => {
+              if (i.filename == props.src.filename) {
+                i.isToggle ? false : true;
+                checked ? false : true;
+              }
+            });
+            return s;
+          });
         }}
-      />
-    </div>
-  );
-}
-
-function Filters() {
-  return (
-    <div>
-      <div>
-        <span>Sort By</span>
-        <select>
-          <option>Date</option>
-          <option>Name</option>
-          <option>Type</option>
-        </select>
-      </div>
-      <div>
-        <span>Search</span>
-        <input type="text" />
-      </div>
-    </div>
-  );
-}
-
-/*
- Image : {
-         src : string,
-         isSelected : bool,
-         isMatched : bool, //grep
-     }
-*/
-
-function SelectButtons(props: { onSelect: any; onDeselect: any }) {
-  return (
-    <div className="p-3  flex justify-center">
-      <input
-        type="button"
-        className="px-3 py-1 text-md bg-green hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
-        value="Select All"
-        onClick={props.onSelect}
-      />
-      <input
-        type="button"
-        value="Deselect All"
-        className="px-3 py-1 text-md bg-red hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
-        onClick={props.onDeselect}
       />
     </div>
   );
@@ -131,7 +109,15 @@ export function Imagelist(props: { images: any }) {
   const [sortby, SetSort] = useState("1");
   // 1-date , 2-name , 3-type
   const [scount, Setcount] = useState(0);
-  const [imgcomponents, Setimages] = useState(props.images.resources);
+  const [imgcomponents, Setimages] = useState(
+    props.images.resources.map((i: any) => {
+      return { ...i, isToggle: false, isMatched: true };
+    })
+  );
+  useEffect(() => {
+    console.log("Images:", imgcomponents);
+  }, [props.images, imgcomponents]);
+
   return (
     <div className="flex flex-col items-stretch">
       <div className="border-4 border-black bg-white rounded-xl flex items-center justify-around text-xl m-5 px-10">
@@ -196,23 +182,58 @@ export function Imagelist(props: { images: any }) {
         </div>
       </div>
 
-      <div className="border-4 border-black rounded-xl m-5 my-2 bg-white flex flex-col flex-wrap items-center bg-opacity-80 p-10 overflow-y-scroll">
+      <div className="border-4 border-black rounded-xl m-5 my-2 bg-white flex flex-col flex-wrap items-center bg-opacity-60 p-10">
         <div className="flex justify-between items-center w-full">
-          <span>{`${scount} files selected`}</span>
-          <SelectButtons
-            onSelect={() => alert("FUck")}
-            onDeselect={() => alert("Suck")}
-          />
+          <span className="text-black p-3 text-xl">{`${scount} files selected`}</span>
+          <div className="p-3  flex justify-center">
+            <input
+              type="button"
+              value="&#128465;"
+              className="px-3 py-1 text-xl bg-pur hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
+            />
+            <input
+              type="button"
+              className="px-3 py-1 font-arcade text-md bg-ylw hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
+              value="&#129095;"
+            />
+            <input
+              type="button"
+              className="px-3 py-1 text-sm bg-green hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
+              value="Select All"
+              onClick={() =>
+                Setimages((s: any) => {
+                  s.map((i: cloudimage) => {
+                    i.isToggle = true;
+                  });
+                  Setcount(s.length);
+                  return s;
+                })
+              }
+            />
+            <input
+              type="button"
+              value="Deselect All"
+              className="px-3 py-1 text-sm bg-green hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
+              onClick={() =>
+                Setimages((s: any) => {
+                  s.map((i: cloudimage) => {
+                    i.isToggle = false;
+                  });
+                  Setcount(0);
+                  return s;
+                })
+              }
+            />
+          </div>
         </div>
-        <div className="grid p-3 grid-cols-6 ms-center">
+        <div className="grid p-3 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
           {imgcomponents.map((src: any, index: number) => {
-            //const regex = new RegExp("([^/]+)$");
-            //const m: RegExpExecArray = regex.exec(src.default.src)!;
             return (
               <Imagecomp
                 src={src}
                 key={index}
                 index={index}
+                setToggle={Setimages}
                 onCheck={(e: number) => {
                   e == 1 ? Setcount((n) => n - 1) : Setcount((n) => n + 1);
                 }}

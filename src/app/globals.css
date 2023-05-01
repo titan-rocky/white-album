@@ -56,12 +56,6 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-.awiggle {
-  background-image: url("./resources/ass-wiggle.gif");
-  background-size: cover;
-  background-position: center;
-}
-
 .darksoul {
   background-image: url("./resources/bgo.png");
   background-blend-mode: overlay;

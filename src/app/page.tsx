@@ -27,10 +27,11 @@ export default function Home() {
     <body className="h-screen">
       <WhHeader />
 
-      <nav className="bg-black p-2 flex justify-evenly">
+      <nav className="bg-black p-2 flex justify-evenly sm:flex-wrap">
         <Navspan link="#" value="Home" home={true} />
         <Navspan link="Gallery/" value="Gallery" />
-        <Navspan link="Slideshow/" value="Slideshow" />
+        <Navspan link="Slideshow/" value="Slideshow" disabled={true} />
+        <Navspan link="Upload/" value="Upload" />
         <Navspan link="Preferences/" value="Preferences" />
       </nav>
 
@@ -41,11 +42,11 @@ export default function Home() {
           &nbsp;in backup drives and cloud storages <br /> to access modify and
           view files from the same.
         </p>
-        <div className="flex flex-row justify-center mt-4 w-full">
-          <div className="bg-white border-4 rounded-lg p-6 flex justify-center items-center basis-1/3">
+        <div className="flex flex-col items-center justify-center md:flex md:flex-row md:mt-4 w-full lg:items-stretch">
+          <div className="bg-white border-4 rounded-lg p-6 flex justify-center items-center basis-1/3 m-5 md:m-0 md:mr-2">
             <Image src={fu} alt="pixel-portrait" />
           </div>
-          <div className="bg-white p-6 bd-black border-4 ml-4 rounded-lg basis-2/3">
+          <div className="bg-white p-6 bd-black border-4 ml-4 rounded-lg basis-2/3 m-5 md:m-0 md:ml-2 ">
             <p className="text-gray drop-shadow-2xl">
               A gallery is a mom&apos;s curiosity, which collects memories of
               the past and present , with our loved ones
