@@ -27,16 +27,6 @@ export default function RootLayout({
           <Navspan link="Preferences/" value="Preferences" home={true} />
         </nav>
         <>{children}</>
-        <footer className="bg-black flex justify-center text-white p-10 py-5">
-          <span className="">&copy; Copyright titan_rocky@2023</span>
-          <Link
-            href="https://github.com/titan-rocky/white-album"
-            className="text-ylw ml-[20em] text-lg"
-            target="_blank"
-          >
-            Github repo
-          </Link>
-        </footer>
       </body>
     </html>
   );

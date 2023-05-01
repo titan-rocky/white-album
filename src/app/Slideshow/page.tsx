@@ -1,12 +1,38 @@
-import { WhHeader, Navspan, Butt } from "../Components/comps";
 import Image from "next/image";
-import abc from "/images/ghi.png";
 import "../globals.css";
+import { Imagelist } from "./clicomponents";
+import "process";
+import { useRouter } from "next/router";
 import { v2 as Cloudinary } from "cloudinary";
-import { useRouter } from "next/navigation";
-//import { ImageComponent } from "./clicomponents";
-import Link from "next/link";
 
+type cloudimage = {
+  asset_id: string;
+  public_id: string;
+  folder: string;
+  filename: string;
+  format: string;
+  version: string;
+  created_at: string;
+  uploaded_at: string;
+  bytes: number;
+  backup_bytes: number;
+  width: number;
+  height: number;
+  aspect_ratio: number;
+  pixels: number;
+  url: string;
+  secure_url: string;
+  status: string;
+  access_mode: string;
+  access_control: string;
+  etag: string;
+  created_by: any;
+  uploaded_by: any;
+  isToggle: boolean;
+  isMatched: boolean;
+};
+
+// Configuration
 Cloudinary.config({
   cloud_name: process.env.cloudapiname,
   api_key: process.env.cloudapikey,
@@ -14,54 +40,34 @@ Cloudinary.config({
   secure: true,
 });
 
-function Slideshow(props: { params: any; searchParams: any }) {
-  const query = props.searchParams;
-  return (
-    <main className="m-5 flex flex-row justify-around items-center">
-      <div className="p-10 border-4 border-black w-[60vw] bg-white bg-opacity-75">
-        <Image
-          src={query.url}
-          width={query.width}
-          height={query.height}
-          alt="adcf"
-        />
-      </div>
+async function fetchThumbUrl(name: string) {
+  const url = Cloudinary.url(name, {
+    width: 160,
+    height: 90,
+    Crop: "fill",
+  });
+  return url;
+}
 
-      <div className="flex flex-col bg-white p-10 m-4 border-black border-4 text-md">
-        <div className="flex justify-around my-2">
-          <span className="basis-1/2">File Name : </span>
-          <span className="basis-1/2 overflow-x-hidden">{query.filename}</span>
-        </div>
-        <div className="flex justify-around my-2">
-          <span className="basis-1/2">File Type : </span>
-          <span className="basis-1/2 overflow-x-hidden">{query.format}</span>
-        </div>
-        <div className="flex justify-around my-2">
-          <span className="basis-1/2">Created At :</span>
-          <span className="basis-1/2 overflow-x-hidden">
-            {query.created_at}
-          </span>
-        </div>
-        <div className="my-5">
-          <a
-            href={query.url}
-            download={query.url}
-            className="bg-bl border-4 border-black px-3 py-2 shadow-xl my-10 hover:bg-black hover:text-white"
-          >
-            Download
-          </a>
-        </div>
-      </div>
-    </main>
+async function fetchImages() {
+  let images = { resources: [] };
+  await Cloudinary.search
+    .expression("resource_type:image")
+    .execute()
+    .then((result) => {
+      images = result;
+    });
+  return images;
+}
+
+export default async function Gallery() {
+  const img: any = await fetchImages();
+  img.resources = img.resources.map((i: any) => {
+    return { ...i, isToggle: false, isMatched: true };
+  });
+  return (
+    <section className="flex flex-col">
+      <Imagelist images={img} />
+    </section>
   );
 }
-/*
-export async function getServerSideProps() {
-  return {
-    props: {
-      path: "/images/abc.png",
-    },
-  };
-}
-*/
-export default Slideshow;

@@ -78,3 +78,17 @@ function Imagecomp(props: {
   );
 }
 */
+
+/*
+        <div className="flex items-center">
+          <span className="text-lg text-black">Images per page: </span>
+          <select className="m-4 text-sm text-white bg-bl font-start2p bd-gray py-2 px-3 shadow-md shadow-black border-2 border-black">
+            <option className="m-3 mt-5 bg-lgray p-3 text-dgray">inf</option>
+            <option className="m-3 mt-5 bg-white p-3 text-black">25</option>
+            <option className="m-3 mt-5 bg-white p-3 text-black">50</option>
+            <option className="m-3 mt-5 bg-white p-3 text-black">75</option>
+            <option className="m-3 mt-5 bg-white p-3 text-black">100</option>
+          </select>
+        </div>
+
+*/

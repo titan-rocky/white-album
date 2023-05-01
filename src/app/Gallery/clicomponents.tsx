@@ -40,16 +40,8 @@ function Loading() {
   return <div>Loading ...</div>;
 }
 
-export function Imagecomp(props: {
-  src: any;
-  index: number;
-  onCheck: any;
-  setToggle: Function;
-}) {
-  const [checked, setCheck] = useState(false);
-  useEffect(() => {
-    setCheck(() => props.src.isToggle);
-  }, [checked, props.src.isToggle]);
+export function Imagecomp(props: { src: any; index: number; onCheck: any }) {
+  const [checked, setCheck] = useState(props.src.isToggle);
   if (props.src.isMatched == false) {
     return <></>;
   }
@@ -58,9 +50,6 @@ export function Imagecomp(props: {
       className={`flex flex-col items-center bg-${
         checked ? "white" : "lgray"
       } border-2 border-black drop-shadow-sm rounded-md m-1 p-3 relative`}
-      onChange={() => {
-        console.log("Hello");
-      }}
     >
       <div className="m-1 overflow-hidden border-black border-2  rounded-lg">
         <Image
@@ -78,7 +67,7 @@ export function Imagecomp(props: {
       <div className="truncate text-black ml-2 w-[80%]">
         <Link
           className="text-xs"
-          href={{ pathname: "/Slideshow", query: props.src }}
+          href={{ pathname: "/View", query: props.src }}
         >
           {props.src.filename + "." + props.src.format}
         </Link>
@@ -89,16 +78,10 @@ export function Imagecomp(props: {
         className="absolute left-1 top-1 w-lg enabled:bg-dbl"
         name="select"
         defaultChecked={checked}
-        onChange={() => {
-          props.setToggle((s: any) => {
-            s.map((i: any) => {
-              if (i.filename == props.src.filename) {
-                i.isToggle ? false : true;
-                checked ? false : true;
-              }
-            });
-            return s;
-          });
+        onChange={(e) => {
+          props.onCheck(props.index, !checked);
+          props.src.isToggle = props.src.isToggle ? false : true;
+          setCheck(checked ? false : true);
         }}
       />
     </div>
@@ -108,18 +91,24 @@ export function Imagecomp(props: {
 export function Imagelist(props: { images: any }) {
   const [sortby, SetSort] = useState("1");
   // 1-date , 2-name , 3-type
-  const [scount, Setcount] = useState(0);
   const [imgcomponents, Setimages] = useState(props.images.resources);
   const [searchbut, Setsearch] = useState(0);
+
+  function setToggle(id: number, toggle: boolean) {
+    Setimages((s: Array<cloudimage>) => {
+      s[id].isToggle = toggle;
+      return s;
+    });
+  }
+  console.log(imgcomponents);
   return (
     <div className="flex flex-col items-stretch">
-      <div className="border-4 border-black bg-white rounded-xl flex items-center justify-around text-xl m-5 px-10">
-        <div className="">
+      <div className="border-4 border-black bg-white rounded-xl flex flex-col lg:flex-row items-center justify-around m-5 px-10 py-2">
+        <div className="flex flex-col items-center sm:flex-row">
           <span>Sort By</span>
           <select
             className="m-4 text-sm text-white bg-bl font-start2p bd-gray py-2 px-3 shadow-md shadow-black border-2 border-black"
             onChange={(event) => {
-              console.log(event.target.value);
               if (event.target.value == "1") {
                 Setimages((s: any) => {
                   s.sort((a: cloudimage, b: cloudimage) => {
@@ -159,8 +148,7 @@ export function Imagelist(props: { images: any }) {
             </option>
           </select>
         </div>
-        <div>
-          <span>Search</span>
+        <div className="flex flex-col items-center sm:flex-row">
           <input
             type="text"
             className="border-4 bg-lbl mx-4 px-5"
@@ -187,21 +175,11 @@ export function Imagelist(props: { images: any }) {
             }}
           />
         </div>
-        <div className="flex items-center">
-          <span className="text-lg text-black">Images per page: </span>
-          <select className="m-4 text-sm text-white bg-bl font-start2p bd-gray py-2 px-3 shadow-md shadow-black border-2 border-black">
-            <option className="m-3 mt-5 bg-lgray p-3 text-dgray">inf</option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">25</option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">50</option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">75</option>
-            <option className="m-3 mt-5 bg-white p-3 text-black">100</option>
-          </select>
-        </div>
       </div>
 
       <div className="border-4 border-black rounded-xl m-5 my-2 bg-white flex flex-col flex-wrap items-center bg-opacity-60 p-10">
         <div className="flex justify-between items-center w-full">
-          <span className="text-black p-3 text-xl">{`${scount} files selected`}</span>
+          <span className="text-black p-3 text-xl">{`Select Files`}</span>
           <div className="p-3  flex justify-center">
             <input
               type="button"
@@ -219,19 +197,12 @@ export function Imagelist(props: { images: any }) {
               value="Select All"
               onClick={() =>
                 Setimages((s: any) => {
+                  let count = 0;
                   s.map((i: cloudimage) => {
                     if (i.isMatched) {
                       i.isToggle = true;
+                      count++;
                     }
-                  });
-                  Setcount(() => {
-                    let a = 0;
-                    imgcomponents.forEach((i: cloudimage) => {
-                      if (i.isToggle && i.isMatched) {
-                        a++;
-                      }
-                    });
-                    return a;
                   });
                   return s;
                 })
@@ -243,10 +214,10 @@ export function Imagelist(props: { images: any }) {
               className="px-3 py-1 text-sm bg-green hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
               onClick={() =>
                 Setimages((s: any) => {
+                  let count = 0;
                   s.map((i: cloudimage) => {
                     i.isToggle = false;
                   });
-                  Setcount(0);
                   return s;
                 })
               }
@@ -260,10 +231,7 @@ export function Imagelist(props: { images: any }) {
                 src={src}
                 key={index}
                 index={index}
-                setToggle={Setimages}
-                onCheck={(e: number) => {
-                  e == 1 ? Setcount((n) => n - 1) : Setcount((n) => n + 1);
-                }}
+                onCheck={setToggle}
               />
             );
           })}

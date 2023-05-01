@@ -30,10 +30,10 @@ export default function Home() {
 
       <nav className="bg-black p-2 flex justify-evenly sm:flex-wrap">
         <Navspan link="#" value="Home" home={true} />
-        <Navspan link="Gallery/" value="Gallery" />
-        <Navspan link="Slideshow/" value="Slideshow" disabled={true} />
+        <Navspan link="Gallery" value="Gallery" />
+        <Navspan link="View/" value="View" disabled={true} />
+        <Navspan link="Slideshow/" value="Slideshow" />
         <Navspan link="Upload/" value="Upload" />
-        <Navspan link="Preferences/" value="Preferences" />
       </nav>
 
       <main className="bg-gray p-10 pt-6 flex flex-col items-center justify-between ">

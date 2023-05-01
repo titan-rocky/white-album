@@ -86,3 +86,11 @@ body::-webkit-scrollbar {
   background-position: center;
   background-attachment: fixed;
 }
+
+.temple {
+  background-image: url("./resources/bg3.jpg");
+  background-blend-mode: overlay;
+  background-size: cove;
+  background-position: center;
+  background-attachment: fixed;
+}

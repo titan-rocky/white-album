@@ -42,7 +42,6 @@ export function Uploadsection() {
 
   return (
     <section className="flex flex-col w-full items-center">
-      <h1 className="text-4xl mb-10 text-black font-bold">Upload Files</h1>
       <Suspense fallback={<Loading />}>
         <form
           className="flex flex-col items-center"

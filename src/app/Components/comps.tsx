@@ -14,6 +14,21 @@ export function Butt(props: { name: string }) {
   );
 }
 
+export function Footer() {
+  return (
+    <footer className="bg-black flex justify-center text-white p-10 py-5 mt-5">
+      <span className="">&copy; Copyright titan_rocky@2023</span>
+      <Link
+        href="https://github.com/titan-rocky/white-album"
+        className="text-ylw ml-[20em] text-lg"
+        target="_blank"
+      >
+        Github repo
+      </Link>
+    </footer>
+  );
+}
+
 export function WhHeader() {
   return (
     <header className="bg-white stretch flex flex-row p-4 items-center relative">
