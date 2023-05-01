@@ -1,6 +1,20 @@
-# White Album
-A project made to view images from home servers , using NextJS 13 and Tailwind <br />
-<a href="https://white-album.vercel.app/">Website Link</a>
+<h1 align=center>White Album</h1>
+
+<p align=center>
+<img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white">
+<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB">
+<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white">
+<img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white">
+</p>
+
+<div align=center >A project made to view images from home servers , using NextJS 13 and Tailwind </div>
+<br>
+<div align=center style="color:#1c1c1c">
+    <a href='https://white-album.vercel.app/' target="_blank" align=cen><img alt='vercel' src='https://img.shields.io/badge/white_Album-100000?style=for-the-badge&logo=vercel&logoColor=white&labelColor=black&color=black'/></a>
+</a>
+</div>
+<br><br>
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
