@@ -2,6 +2,7 @@ import Image from "next/image";
 import "./globals.css";
 import { WhHeader, Navspan } from "./Components/comps";
 import fu from "./resources/portrait.gif";
+import Link from "next/link";
 
 function Hellobut() {
   return (
@@ -81,6 +82,16 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <footer className="bg-black flex justify-center text-white p-10 py-5">
+        <span className="">&copy; Copyright titan_rocky@2023</span>
+        <Link
+          href="https://github.com/titan-rocky/white-album"
+          className="text-ylw ml-[20em] text-lg"
+          target="_blank"
+        >
+          Github repo
+        </Link>
+      </footer>
     </body>
   );
 }

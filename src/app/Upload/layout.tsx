@@ -1,5 +1,6 @@
 import "../globals.css";
 import { WhHeader, Navspan, Butt } from "../Components/comps";
+import Link from "next/link";
 
 export const metadata = {
   title: "Upload Files",
@@ -25,9 +26,19 @@ export default function RootLayout({
           <Navspan link="#" value="Upload" home={true} />
           <Navspan link="Preferences/" value="Preferences" />
         </nav>
-        <main className="flex flex-col items-center m-5 border-4 border-black rounded-lg bg-white p-5">
+        <main className="flex flex-col items-center m-5 border-4 border-black rounded-lg bg-white p-5 min-h-[72vh]">
           {children}
         </main>
+        <footer className="bg-black flex justify-center text-white p-10 py-5">
+          <span className="">&copy; Copyright titan_rocky@2023</span>
+          <Link
+            href="https://github.com/titan-rocky/white-album"
+            className="text-ylw ml-[20em] text-lg"
+            target="_blank"
+          >
+            Github repo
+          </Link>
+        </footer>
       </body>
     </html>
   );

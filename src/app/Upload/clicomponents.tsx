@@ -48,6 +48,7 @@ export function Uploadsection() {
           className="flex flex-col items-center"
           action="/api/upload"
           method="POST"
+          onChange={() => {}}
         >
           <div className="flex justify-center mx-2 w-full">
             <input

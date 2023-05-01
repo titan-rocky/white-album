@@ -9,7 +9,7 @@ Cloudinary.config({
   secure: true,
 });
 
-export async function POST(request, response) {
+export async function POST(request: any, response: any) {
   let images = { resources: Array<any> };
   return NextResponse.json(request);
 }

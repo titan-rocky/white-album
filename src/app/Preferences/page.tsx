@@ -3,7 +3,7 @@ import { Needbox } from "./clicomponents";
 
 export default function Prefs() {
   return (
-    <main className="bg-green h-[100vh]">
+    <main className="bg-lbl h-[80vh]">
       <Needbox />
     </main>
   );

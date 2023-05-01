@@ -1,8 +1,8 @@
-"use client";
+/*"use client";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-/*
+
 export function ImageComponent() {
   const router = useRouter();
   const data = router.query;

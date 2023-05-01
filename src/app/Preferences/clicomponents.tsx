@@ -21,7 +21,9 @@ export function Needbox() {
         />
       </div>
       {showH && (
-        <span className="text-4xl animate-pulse text-white">Harder !</span>
+        <span className="text-4xl animate-pulse text-white">
+          Sorry for the Inconvenience !
+        </span>
       )}
     </div>
   );

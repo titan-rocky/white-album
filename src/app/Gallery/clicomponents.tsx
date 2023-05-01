@@ -46,10 +46,10 @@ export function Imagecomp(props: {
   onCheck: any;
   setToggle: Function;
 }) {
-  const [checked, setCheck] = useState(props.src.isToggle);
+  const [checked, setCheck] = useState(false);
   useEffect(() => {
-    setCheck(props.src.isToggle);
-  });
+    setCheck(() => props.src.isToggle);
+  }, [checked, props.src.isToggle]);
   if (props.src.isMatched == false) {
     return <></>;
   }
@@ -109,15 +109,8 @@ export function Imagelist(props: { images: any }) {
   const [sortby, SetSort] = useState("1");
   // 1-date , 2-name , 3-type
   const [scount, Setcount] = useState(0);
-  const [imgcomponents, Setimages] = useState(
-    props.images.resources.map((i: any) => {
-      return { ...i, isToggle: false, isMatched: true };
-    })
-  );
-  useEffect(() => {
-    console.log("Images:", imgcomponents);
-  }, [props.images, imgcomponents]);
-
+  const [imgcomponents, Setimages] = useState(props.images.resources);
+  const [searchbut, Setsearch] = useState(0);
   return (
     <div className="flex flex-col items-stretch">
       <div className="border-4 border-black bg-white rounded-xl flex items-center justify-around text-xl m-5 px-10">
@@ -168,7 +161,31 @@ export function Imagelist(props: { images: any }) {
         </div>
         <div>
           <span>Search</span>
-          <input type="text" className="border-4 bg-lbl mx-4 px-5" />
+          <input
+            type="text"
+            className="border-4 bg-lbl mx-4 px-5"
+            onChange={(e) => {
+              e.preventDefault();
+              Setimages((s: any) => {
+                s.map((i: cloudimage) => {
+                  if (i.filename.match("^" + e.target.value + ".") != null) {
+                    i.isMatched = true;
+                  } else {
+                    i.isMatched = false;
+                  }
+                });
+                return s;
+              });
+            }}
+          />
+          <input
+            type="button"
+            value="search"
+            className="m-4 text-sm text-white bg-bl font-start2p bd-gray py-2 px-3 shadow-md shadow-black border-2 border-black hover:bg-black hover:text-white"
+            onClick={() => {
+              Setsearch((s: any) => (s ? 0 : 1));
+            }}
+          />
         </div>
         <div className="flex items-center">
           <span className="text-lg text-black">Images per page: </span>
@@ -203,9 +220,19 @@ export function Imagelist(props: { images: any }) {
               onClick={() =>
                 Setimages((s: any) => {
                   s.map((i: cloudimage) => {
-                    i.isToggle = true;
+                    if (i.isMatched) {
+                      i.isToggle = true;
+                    }
                   });
-                  Setcount(s.length);
+                  Setcount(() => {
+                    let a = 0;
+                    imgcomponents.forEach((i: cloudimage) => {
+                      if (i.isToggle && i.isMatched) {
+                        a++;
+                      }
+                    });
+                    return a;
+                  });
                   return s;
                 })
               }

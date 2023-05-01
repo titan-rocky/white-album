@@ -62,7 +62,10 @@ async function fetchImages() {
 }
 
 export default async function Gallery() {
-  const img = await fetchImages();
+  const img: any = await fetchImages();
+  img.resources = img.resources.map((i: any) => {
+    return { ...i, isToggle: false, isMatched: true };
+  });
   return (
     <section className="flex flex-col">
       <Imagelist images={img} />
