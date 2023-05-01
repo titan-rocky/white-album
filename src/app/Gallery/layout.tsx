@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray">
+      <body className="bg-gray wafall">
         <WhHeader />
         <nav className="bg-black p-2 flex justify-evenly sm:flex-wrap">
           <Navspan link="/" value="Home" />

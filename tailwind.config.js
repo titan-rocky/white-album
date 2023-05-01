@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     fontFamily: {
       fira: ['"Fira Code"'],
-      start2p: ['"Press Start 2P"'],
+      start2p: ['"start2p"'],
       arcade: ["retrogam", "monospace"],
       upheavel: ["upheavel"],
       alstoria: ["alstoria"],
