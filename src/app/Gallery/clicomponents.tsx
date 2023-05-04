@@ -47,35 +47,38 @@ export function Imagecomp(props: { src: any; index: number; onCheck: any }) {
   }
   return (
     <div
-      className={`flex flex-col items-center bg-${
+      className={`bg-${
         checked ? "white" : "lgray"
-      } border-2 border-black drop-shadow-sm rounded-md m-1 p-3 relative`}
+      } border-2 border-black drop-shadow-sm rounded-md m-1 p-4 px-5 relative`}
     >
-      <div className="m-1 overflow-hidden border-black border-2  rounded-lg">
-        <Image
-          src={props.src.url}
-          alt={`Image ${props.src.filename}`}
-          width={400}
-          height={225}
-          quality="60"
-          className="w-[12em] h-[6.75em] bg-white object-cover
+      <Link
+        className="flex flex-col items-center"
+        href={{ pathname: "/View", query: props.src }}
+      >
+        <div className="m-1 overflow-hidden border-black border-2 rounded-lg w-[12em] h-[6.75em]">
+          <Image
+            src={props.src.url}
+            alt={`Image ${props.src.filename}`}
+            width={400}
+            height={225}
+            quality="60"
+            className="bg-white w-[12em] h-[6.75em] object-cover
                             transition-all delay-0
                             hover:scale-150 over:transition-all hover:ease-in-out hover:duration-[1000ms]"
-          loading="eager"
-        />
-      </div>
-      <div className="truncate text-black ml-2 w-[80%]">
-        <Link
-          className="text-xs"
-          href={{ pathname: "/View", query: props.src }}
-        >
-          {props.src.filename + "." + props.src.format}
-        </Link>
-      </div>
+            loading="eager"
+          />
+        </div>
+        <div className="truncate text-black ml-2 my-1 overflow-x-hidden w-52">
+          <span className="text-xs">
+            {" "}
+            {props.src.filename + "." + props.src.format}
+          </span>
+        </div>
+      </Link>
       <input
         id={"select" + props.index.toString()}
         type="checkbox"
-        className="absolute left-1 top-1 w-lg enabled:bg-dbl"
+        className="absolute left-1 top-1 w-lg enabled:bg-dbl z-10"
         name="select"
         defaultChecked={checked}
         onChange={(e) => {
@@ -177,7 +180,7 @@ export function Imagelist(props: { images: any }) {
         </div>
       </div>
 
-      <div className="border-4 border-black rounded-xl m-5 my-2 bg-white flex flex-col flex-wrap items-center bg-opacity-60 p-10">
+      <div className="border-4 border-black rounded-xl m-5 my-2 bg-white bg-opacity-60 p-10">
         <div className="flex justify-between items-center w-full">
           <span className="text-black p-3 text-xl">{`Select Files`}</span>
           <div className="p-3  flex justify-center">
@@ -224,7 +227,7 @@ export function Imagelist(props: { images: any }) {
             />
           </div>
         </div>
-        <div className="grid p-3 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+        <div className="grid p-3 xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2">
           {imgcomponents.map((src: any, index: number) => {
             return (
               <Imagecomp

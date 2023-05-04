@@ -29,16 +29,30 @@ export function Footer() {
   );
 }
 
-export function WhHeader() {
+export function WhHeader(props: { user: string }) {
   return (
-    <header className="bg-white stretch flex flex-row p-4 items-center relative">
+    <header className="bg-white stretch flex flex-row p-4 items-center justify-between">
       <h1 className="text-3xl mt-1 p-3 text-dbl">White Album</h1>
-      <Image
-        src={usans}
-        alt="sans"
-        className="w-20 h-20 absolute transform-center right-1"
-      />
+      <div className="flex items-center mx-10">
+        <Image src={usans} alt="sans" width={60} height={60} />
+        <span className="text-lg">Welcome {props.user}</span>
+      </div>
     </header>
+  );
+}
+
+export function WhFooter() {
+  return (
+    <footer className="bg-black flex justify-center text-white p-5 py-2">
+      <span className="">&copy; Copyright titan_rocky@2023</span>
+      <Link
+        href="https://github.com/titan-rocky/white-album"
+        className="text-ylw ml-[20em] text-lg"
+        target="_blank"
+      >
+        Github repo
+      </Link>
+    </footer>
   );
 }
 

@@ -68,7 +68,7 @@ export default async function Gallery() {
   });
   return (
     <section className="flex flex-col">
-      <Imagelist images={img} />
+        <Imagelist images={img} />
     </section>
   );
 }

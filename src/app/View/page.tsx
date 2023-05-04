@@ -45,7 +45,7 @@ function View(props: { params: any; searchParams: any }) {
         <div className="my-5">
           <a
             href={query.url}
-            download={query.url}
+            download
             className="bg-bl border-4 border-black px-3 py-2 shadow-xl my-10 hover:bg-black hover:text-white"
           >
             Download

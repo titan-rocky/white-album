@@ -16,16 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <body className="bg-gray bwell">
-      <WhHeader />
+    <div>
       <nav className="bg-black p-2 flex justify-evenly sm:flex-wrap">
         <Navspan link="/" value="Home" />
         <Navspan link="Gallery/" value="Gallery" />
-        <Navspan link="View/" value="View" disabled={true} />
         <Navspan link="Slideshow/" value="Slideshow" />
         <Navspan link="Upload/" value="Upload" home={true} />
       </nav>
-      <div></div>
       <main className="flex flex-col items-center m-5 border-4 border-black rounded-lg bg-white p-5 min-h-[72vh]  bg-opacity-70">
         <h1 className="text-4xl mb-10 mt-2 text-black font-bold ">
           Upload Files
@@ -33,6 +30,6 @@ export default function RootLayout({
 
         {children}
       </main>
-    </body>
+    </div>
   );
 }

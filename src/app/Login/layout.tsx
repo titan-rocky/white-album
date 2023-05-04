@@ -1,9 +1,7 @@
-import "../globals.css";
 import { WhHeader, Navspan, Butt } from "../Components/comps";
-import Link from "next/link";
 
 export const metadata = {
-  title: "Preferences",
+  title: "White Album",
   description: "Album to show people",
   icons: {
     icon: "./favicon.ico",
@@ -16,15 +14,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-gray">
+    <div>
       <nav className="bg-black p-2 flex justify-evenly sm:flex-wrap">
-        <Navspan link="Home/" value="Home" />
+        <Navspan link="/" value="Home" />
+        <Navspan link="Login/" value="Login" home={true} />
         <Navspan link="Gallery/" value="Gallery" />
-        <Navspan link="Slideshow/" value="Slideshow" disabled={true} />
+        <Navspan link="Slideshow/" value="Slideshow" />
         <Navspan link="Upload/" value="Upload" />
-        <Navspan link="Preferences/" value="Preferences" home={true} />
       </nav>
-      <>{children}</>
+      <main>{children}</main>
     </div>
   );
 }
