@@ -11,44 +11,44 @@
 <div align=center >A project made to view images from home servers , using NextJS 13 and Tailwind </div>
 <br>
 <div align=center style="color:#1c1c1c">
+    <h4 align=center>Website Link</h4>
     <a href='https://white-album.vercel.app/' target="_blank" align=cen><img alt='vercel' src='https://img.shields.io/badge/white_Album-100000?style=for-the-badge&logo=vercel&logoColor=white&labelColor=black&color=black'/></a>
 </a>
 </div>
 <br><br>
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Project Description
+This is a Web App which focuses on displaying images of servers , specially home servers , to all people . This project aims on providing an accessible UI having the basic utilities of
+* View : Gallery, Induvitual, Slideshow
+* Upload / Download
+* Deletion
+of images , controlling remotely from the client without any necessary interaction knowledge between the providers and the client.
+When common people find it difficult to configure backup storages by logging into their image servers , as well as conncting them , this app will come handy, making their images visible and giving them easier **accessibility** and control
 
-## Getting Started
+## Demo
+https://user-images.githubusercontent.com/66237117/236296277-b312f07e-f72d-4615-9946-83da64c7afcf.mp4
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Connectivity
+This web app runs with [Cloudinary](https://cloudinary.com/) as the service provider , and the web application server is being hosted in Vercel , a cloud-based platform for development , deployment and scale of projects , enabling multiple users to access with a URL as per the architecture. The app has the capabilities of fetching requests from the cloud provider, and rendering the same to enable view of the contents in the cloud.
+This project is a prototype. I'm working on to make it versatile to be hosted on any storage server, using some limited , required data necessary to authenticate the request, and also to avoid unauthorized access.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Frameworks
+I have selected **Next** as the full stack framework in this application , since i felt that a **Powered React Frontend** will be most suitable for rendering , in terms of this application, and also to work on the entire document components , having a full control over it. Using the **Beta** /app version of Next JS 13 , gives me a lot of opportunities to work more with react , since i have been working on react currently.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+As of CSS frameworks, this app has been completely developed with **Tailwind CSS** , since it makes life with CSS easier , less code space , and thus faster coding experience.
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+## Screenshots
+### Home page
+![Screenshot 2023-05-05 000609](https://user-images.githubusercontent.com/66237117/236297664-d684f920-8f9a-4bda-b0dc-3467b7ab3e4d.png)
+### Gallery
+![image](https://user-images.githubusercontent.com/66237117/236297761-4e209f79-4703-48b1-a8fd-2fa20d2618ab.png)
+### Slideshow
+![image](https://user-images.githubusercontent.com/66237117/236297914-5207bbcb-c0b6-40d0-94aa-e75d3fa6edc2.png)
+### Upload
+![image](https://user-images.githubusercontent.com/66237117/236298101-c5583518-8461-4413-8250-7fdb81b6222c.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
