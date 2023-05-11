@@ -26,6 +26,7 @@ export default function RootLayout({
       >
         <WhHeader user={"dommy"} />
         <main>{children}</main>
+        <WhFooter />
       </body>
     </html>
   );
