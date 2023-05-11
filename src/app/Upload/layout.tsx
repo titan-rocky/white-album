@@ -23,7 +23,7 @@ export default function RootLayout({
         <Navspan link="Slideshow/" value="Slideshow" />
         <Navspan link="Upload/" value="Upload" home={true} />
       </nav>
-      <main className="flex flex-col items-center m-5 border-4 border-black rounded-lg bg-white p-5 min-h-[72vh]  bg-opacity-70">
+      <main className="flex flex-col items-center m-5 border-4 border-black rounded-lg bg-white p-5 min-h-[72vh] h-[80vh] bg-opacity-70">
         <h1 className="text-4xl mb-10 mt-2 text-black font-bold ">
           Upload Files
         </h1>
