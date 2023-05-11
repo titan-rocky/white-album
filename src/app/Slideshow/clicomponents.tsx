@@ -23,14 +23,6 @@ export function Imagelist(props: { images: any }) {
   return (
     <div className="flex flex-col m-10">
       <div className="flex  justify-around items-center mb-10">
-        <input
-          type="button"
-          value="<"
-          className="text-lbl text-8xl disabled:text-white px-5 py-2"
-          onClick={() => {
-            setId((s) => (s === 0 ? imgcomponents.length - 1 : s - 1));
-          }}
-        />
         <div className="flex flex-col items-center">
           <div className=" p-5 border-4 border-black bg-white bg-opacity-70 m-3">
             <Suspense fallback={<Loadingimage />}>
@@ -44,20 +36,21 @@ export function Imagelist(props: { images: any }) {
             </Suspense>
           </div>
         </div>
-        <input
-          type="button"
-          value=">"
-          onClick={() =>
-            setId((s: number) => (s === imgcomponents.length - 1 ? 0 : s + 1))
-          }
-          className="text-lbl text-8xl disabled:text-white px-5 py-2"
-        />
       </div>
       <div className=" text-center p-5 border-4 border-black bg-white bg-opacity-70">
         <span className="mb-10 mt-2px text-lg text-center max-w-lg">
           {imgcomponents[id].filename + "." + imgcomponents[id].format}
         </span>
         <div className="flex items-center justify-center">
+          <input
+            type="button"
+            value="<"
+            className="text-black hover:text-bl text-4xl font-bold disabled:text-white px-5 py-2"
+            onClick={() => {
+              setId((s) => (s === 0 ? imgcomponents.length - 1 : s - 1));
+            }}
+          />
+
           <button className="m-5" disabled={paused}>
             <span
               className={`text-3xl text-${
@@ -68,7 +61,7 @@ export function Imagelist(props: { images: any }) {
               ||
             </span>
           </button>
-          <button disabled={!paused} className="m-5 mt-[1.6em]">
+          <button disabled={!paused} className="m-5">
             <span
               className={`text-3xl text-${
                 paused ? "black" : "bl"
@@ -78,6 +71,14 @@ export function Imagelist(props: { images: any }) {
               ▶
             </span>
           </button>
+          <input
+            type="button"
+            value=">"
+            onClick={() =>
+              setId((s: number) => (s === imgcomponents.length - 1 ? 0 : s + 1))
+            }
+            className="text-black hover:text-bl text-4xl  font-bold disabled:text-white px-5 py-2"
+          />
         </div>
       </div>
     </div>

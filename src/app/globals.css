@@ -39,18 +39,17 @@
   --dgray: #414140;
   --black: #000000;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --white: #fefffe;
+    --black: #fefffe;
     --lgray: #bebfbe;
     --gray: #7f7e7e;
     --dgray: #414140;
-    --black: #000000;
+    --white: #000000;
   }
 }
-*/
 
+*/
 * {
   box-sizing: border-box;
   margin: 0;

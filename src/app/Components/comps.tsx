@@ -31,11 +31,16 @@ export function Footer() {
 
 export function WhHeader(props: { user: string }) {
   return (
-    <header className="bg-white stretch flex flex-row p-4 items-center justify-between">
-      <h1 className="text-3xl mt-1 p-3 text-dbl">White Album</h1>
+    <header className="bg-white dark:bg-black stretch flex flex-row p-4 items-center justify-between">
+      <h1 className="text-3xl mt-1 p-3 text-dbl dark:text-white">
+        White Album
+      </h1>
       <div className="flex items-center mx-10">
         <Image src={usans} alt="sans" width={60} height={60} />
-        <span className="text-lg">Welcome {props.user}</span>
+        <span className="text-lg">
+          Welcome <b className="text-dbl text-lg">{props.user}</b> !
+        </span>
+        <span className="text-lg text-red mx-10">Logout</span>
       </div>
     </header>
   );
@@ -63,15 +68,19 @@ export function Navspan(props: {
   disabled: boolean;
 }) {
   if (props.home) {
-    return <span className="text-bl text-l">{props.value}</span>;
+    return (
+      <span className="text-bl dark:text-dgray text-l">{props.value}</span>
+    );
   } else if (props.disabled) {
-    return <span className="text-lred text-l">{props.value}</span>;
+    return (
+      <span className="text-lred dark:text-lgray text-l">{props.value}</span>
+    );
   }
   return (
     <Link
       href={props.link}
       className={`text-${(props.home && "bl") || "white"} 
-        or text-l hover:text-bl
+         dark:text-lgray text-l hover:text-bl dark:hover:text-black
         `}
     >
       <span className="">{props.value}</span>

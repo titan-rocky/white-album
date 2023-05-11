@@ -103,7 +103,6 @@ export function Imagelist(props: { images: any }) {
       return s;
     });
   }
-  console.log(imgcomponents);
   return (
     <div className="flex flex-col items-stretch">
       <div className="border-4 border-black bg-white rounded-xl flex flex-col lg:flex-row items-center justify-around m-5 px-10 py-2">

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { v2 as Cloudinary } from "cloudinary";
 import { Suspense } from "react";
 import Image from "next/image";
+import { cloudimage } from "../Components/types";
+import axios from "axios";
 
 function ImageComponent(props: { images: Array<string> }) {
   if (props.images.length) {
@@ -38,28 +40,25 @@ function Loading() {
 }
 
 export function Uploadsection() {
-  const [upfiles, UploadFiles] = useState<Array<string>>([]);
-
+  const [upfiles, UploadFiles] = useState<Array<any>>([]);
+  const handleUpload = async (e: any) => {
+    e.preventDefault();
+    const x = await axios.post("/api/upload", { data: upfiles });
+  };
   return (
     <section className="flex flex-col w-full items-center">
       <Suspense fallback={<Loading />}>
-        <form
-          className="flex flex-col items-center"
-          action="/api/upload"
-          method="POST"
-          onChange={() => {}}
-        >
+        <form className="flex flex-col items-center" onSubmit={handleUpload}>
           <div className="flex justify-center mx-2 w-full">
             <input
               type="File"
               className="bg-bl border-4 border-black rounded-sm p-2 text-white shadow-md shadow-black file:bg-white file:m-3 file:flex-col file:px-3 file:py-2 px-10"
               onChange={(e) => {
                 // @ts-ignore: type error
-                const a = [...e.target.files].map((i: File) =>
-                  URL.createObjectURL(i)
-                );
+                const a = [...e.target.files].map((i: File) => {
+                  return URL.createObjectURL(i);
+                }); //URL.createObjectURL(i)
                 UploadFiles(() => a);
-                console.log("DOne");
               }}
               multiple
               required

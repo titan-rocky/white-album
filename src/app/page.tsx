@@ -25,7 +25,7 @@ function Hellobut() {
 export default function Home() {
   return (
     <div className="relative">
-      <nav className="bg-black p-2 flex justify-evenly sm:flex-wrap">
+      <nav className="bg-black dark:bg-white p-2 flex justify-evenly sm:flex-wrap">
         <Navspan link="/" value="Home" home={true} />
         <Navspan link="Gallery/" value="Gallery" />
         <Navspan link="Slideshow/" value="Slideshow" />

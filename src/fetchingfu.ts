@@ -1,15 +1,22 @@
-/*const cloudinary = require("cloudinary").v2;
+import { PrismaClient } from "@prisma/client";
 
-// Configuration
-cloudinary.config({
-  cloud_name: "dhwwvwpxq",
-  api_key: "392948923474237",
-  api_secret: "47fnHkc6Vknr_I-jI0Oi1miMnxM",
-  secure: true,
-});
+const prisma = new PrismaClient();
 
-cloudinary.search
-  .expression("resource_type:image")
-  .execute()
-  .then((result) => console.log(result.resources[0]));
-  */
+async function Post() {
+  const user = await prisma.auth.create({
+    data: {
+      username: "rocka",
+      password: "mightyrockashit",
+    },
+  });
+  console.log(user);
+}
+
+Post().then(
+  async () =>
+    await prisma.$disconnect().catch(async (e) => {
+      console.error(e);
+      await prisma.$disconnect();
+      process.exit(1);
+    })
+);

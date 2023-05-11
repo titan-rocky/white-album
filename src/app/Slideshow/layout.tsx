@@ -28,7 +28,7 @@ export default function RootLayout({
     <div>
       <nav className="bg-black p-2 flex justify-evenly sm:flex-wrap">
         <Navspan link="/" value="Home" />
-        <Navspan link="#" value="Gallery" />
+        <Navspan link="Gallery/" value="Gallery" />
         <Navspan link="Slideshow/" value="Slideshow" home={true} />
         <Navspan link="Upload/" value="Upload" />
       </nav>
