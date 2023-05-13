@@ -10,12 +10,14 @@ export const metadata = {
     icon: "./favicon.ico",
   },
 };
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const darkMode = false;
+
   return (
     <html lang="en" className={darkMode ? "dark" : ""}>
       <body
