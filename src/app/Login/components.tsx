@@ -42,7 +42,7 @@ export function LoginPanel() {
                 });
                 if (i.password === password.current) {
                   SetSubmit(true);
-                  router.push("/");
+                  setTimeout(() => router.push("/"), 3000);
                 }
               }
             });

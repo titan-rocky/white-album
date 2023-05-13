@@ -24,7 +24,7 @@ export default function RootLayout({
           (darkMode ? "darksoul" : "wafall")
         }
       >
-        <WhHeader user={"dommy"} />
+        <WhHeader user={"rocka"} />
         <main>{children}</main>
         <WhFooter />
       </body>

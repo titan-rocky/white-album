@@ -32,7 +32,7 @@ export default function RootLayout({
         <Navspan link="Slideshow/" value="Slideshow" />
         <Navspan link="Upload/" value="Upload" />
       </nav>
-      <main>
+      <main className="min-h-[72vh]">
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </main>
     </div>

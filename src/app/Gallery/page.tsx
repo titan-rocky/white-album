@@ -67,8 +67,8 @@ export default async function Gallery() {
     return { ...i, isToggle: false, isMatched: true };
   });
   return (
-    <section className="flex flex-col">
-        <Imagelist images={img} />
+    <section className="flex flex-col min-h-[80vh]">
+      <Imagelist images={img} />
     </section>
   );
 }

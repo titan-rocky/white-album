@@ -79,6 +79,7 @@ export function Imagecomp(props: { src: any; index: number; onCheck: any }) {
         id={"select" + props.index.toString()}
         type="checkbox"
         className="absolute left-1 top-1 w-lg enabled:bg-dbl z-10"
+        value="1"
         name="select"
         defaultChecked={checked}
         onChange={(e) => {

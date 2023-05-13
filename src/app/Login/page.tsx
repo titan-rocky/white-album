@@ -29,7 +29,7 @@ export default function Login() {
         <Navspan link="Login/" value="Login" home={true} />
       </nav>
 
-      <div className="bg-white bg-opacity-60 border-4 border-black m-10 p-10">
+      <div className="bg-white h-[72vh] bg-opacity-60 border-4 border-black m-10 p-10">
         <LoginPanel />
       </div>
     </>
