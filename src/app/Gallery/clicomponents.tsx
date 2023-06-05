@@ -86,84 +86,81 @@ export function Imagecomp(props: { src: any; index: number; onCheck: any }) {
           props.onCheck(props.index, !checked);
           props.src.isToggle = props.src.isToggle ? false : true;
           setCheck(checked ? false : true);
-          props.onCheck(props.index,!checked,props.src.isMatched)
+          props.onCheck(props.index, !checked, props.src.isMatched);
         }}
       />
     </div>
   );
 }
 
-
-function toggleImageonClick (state:any,action:any) {
-        switch(action.type){
-            case "toggle" :
-            {
-                if (action.match){
-                    return state.map( (i:cloudimage,index:number) => {
-                            if (index==action.index){
-                                i.isToggle = !action.currstate
-                            }
-                            return i;
-                            })
-                    }
-                }
-            }
-}
-function imageReducer (state,action) {
-    switch (action.type){
-        case "toggle":
-        {
-            console.log(action.images);
-            return state.map( (i:cloudimage,index:number) => {
-                if (index===action.index){
-                    i.isToggle = action.currstate;
-                }
-                return i;
-            })
-        }
-        case "selectall" :
-        {
-            return state.map( (i:cloudimage,index:number) => {
-                if (i.isMatched){i.isToggle = true;}
-                return i;
-            } )
-        }
-
-        case "deselectall" :
-        {
-            return state.map( (i:cloudimage,index:number) => {
-                if (i.isMatched){i.isToggle = false;}
-                return i;
-            } )
-        }
-
-            
+function toggleImageonClick(state: any, action: any) {
+  switch (action.type) {
+    case "toggle": {
+      if (action.match) {
+        return state.map((i: cloudimage, index: number) => {
+          if (index == action.index) {
+            i.isToggle = !action.currstate;
+          }
+          return i;
+        });
+      }
     }
+  }
 }
+function imageReducer(state: any, action: any) {
+  switch (action.type) {
+    case "toggle": {
+      console.log(action.images);
+      return state.map((i: cloudimage, index: number) => {
+        if (index === action.index) {
+          i.isToggle = action.currstate;
+        }
+        return i;
+      });
+    }
+    case "selectall": {
+      return state.map((i: cloudimage, index: number) => {
+        if (i.isMatched) {
+          i.isToggle = true;
+        }
+        return i;
+      });
+    }
 
-
+    case "deselectall": {
+      return state.map((i: cloudimage, index: number) => {
+        if (i.isMatched) {
+          i.isToggle = false;
+        }
+        return i;
+      });
+    }
+  }
+}
 
 export function Imagelist(props: { images: any }) {
   const [sortby, SetSort] = useState("1");
   // 1-date , 2-name , 3-type
-  
+
   const [imgcomponents, Setimages] = useState(props.images.resources);
-  const [currimgcomponents,dispatch] = useReducer(imageReducer,imgcomponents);    
+  const [currimgcomponents, dispatch] = useReducer(imageReducer, imgcomponents);
 
-    function handleOnToggle (index:number,isToggle:boolean,isMatched:boolean){
-        dispatch({
-            type:"toggle",
-            index:index,
-            currstate:isToggle,
-            match:isMatched,
-            images:imgcomponents
-        })
-    }
-
-
+  function handleOnToggle(
+    index: number,
+    isToggle: boolean,
+    isMatched: boolean
+  ) {
+    dispatch({
+      type: "toggle",
+      index: index,
+      currstate: isToggle,
+      match: isMatched,
+      images: imgcomponents,
+    });
+  }
 
   const [searchbut, Setsearch] = useState(0);
-  const searchRef = useRef<HTMLInputElement>(null)
+  const searchRef = useRef<HTMLInputElement>(null);
 
   function setToggle(id: number, toggle: boolean) {
     Setimages((s: Array<cloudimage>) => {
@@ -171,7 +168,6 @@ export function Imagelist(props: { images: any }) {
       return s;
     });
   }
-
 
   return (
     <div className="flex flex-col items-stretch">
@@ -245,14 +241,17 @@ export function Imagelist(props: { images: any }) {
             onClick={() => {
               Setsearch((s: any) => (s ? 0 : 1));
             }}
-            ref = {searchRef}
+            ref={searchRef}
           />
         </div>
       </div>
 
       <div className="border-4 border-black rounded-xl m-5 my-2 bg-white bg-opacity-60 p-10">
         <div className="flex justify-between items-center w-full">
-          <span className="text-black p-3 text-xl">{`Selected ${imgcomponents.filter( (i:cloudimage) => i.isMatched&&i.isToggle) .length } Files`}</span>
+          <span className="text-black p-3 text-xl">{`Selected ${
+            imgcomponents.filter((i: cloudimage) => i.isMatched && i.isToggle)
+              .length
+          } Files`}</span>
           <div className="p-3  flex justify-center">
             <input
               type="button"
@@ -268,14 +267,13 @@ export function Imagelist(props: { images: any }) {
               type="button"
               className="px-3 py-1 text-sm bg-green hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
               value="Select All"
-              onClick={ () => dispatch({type:"selectall"}) }
-
+              onClick={() => dispatch({ type: "selectall" })}
             />
             <input
               type="button"
               value="Deselect All"
               className="px-3 py-1 text-sm bg-green hover:bg-black border-4 border-black shadow-black shadow-md mx-2 text-white"
-              onClick={ () => dispatch({type:"deselectall"}) }
+              onClick={() => dispatch({ type: "deselectall" })}
             />
           </div>
         </div>
